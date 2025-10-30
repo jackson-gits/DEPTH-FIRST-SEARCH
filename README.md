@@ -1,8 +1,12 @@
 # BREADTH-FIRST-SEARCH
+
+```
+Name         : Shivaram M.
+Register No. : 212223040195
+```
 <h1>ExpNo 3 : Implement Breadth First Search Traversal of a Graph</h1> 
-<h2>DATE: 22/08/2025</h2>
-<h3>Name: Jackson Raj</h3>
-<h3>Register Number: 212223040071</h3>
+<h3>Name:  </h3>
+<h3>Register Number: </h3>
 <H3>Aim:</H3>
 <p>To Implement Breadth First Search Traversal of a Graph using Python 3.</p>
 <h3>Theory:</h3>
@@ -69,43 +73,50 @@ Now, Queue becomes empty, So, terminate these process of iteration.
 
 </ol>
 
-<hr>
-<h3>Program:</h3>
-<hr>
+## Code
+```
+from collections import deque, defaultdict
+
+def bfs_graph(n, edges):
+    # Create adjacency list
+    graph = defaultdict(list)
+    for u, v in edges:
+        graph[u].append(v)
+        graph[v].append(u)  # Assuming undirected graph
+
+    # Sort adjacency lists to get consistent order
+    for key in graph:
+        graph[key].sort()
+
+    # BFS
+    start = edges[0][0]  # Start from first node in input
+    visited = set()
+    queue = deque([start])
+    order = []
+
+    while queue:
+        node = queue.popleft()
+        if node not in visited:
+            visited.add(node)
+            order.append(node)
+            for neighbor in graph[node]:
+                if neighbor not in visited:
+                    queue.append(neighbor)
+    return order
+
+# Reading input and converting as per your format
+def main():
+    n, m = map(int, input().split())
+    edges = [tuple(input().split()) for _ in range(m)]
+    result = bfs_graph(n, edges)
+    print(result)
+
+if __name__ == "__main__":
+    main()
 
 ```
-
-from collections import deque
-from collections import defaultdict
-
-def bfs(graph,start,visited,path):
-    queue = deque()
-    path.append(start)
-    queue.append(start)
-    visited[start] = True
-    while len(queue) != 0:
-        tmpnode = queue.popleft()
-        for neighbour in graph[tmpnode]:
-          if not visited[neighbour]:
-            path.append(neighbour)
-            queue.append(neighbour)
-            visited[neighbour]=True
-    return path
-
-graph = defaultdict(list)
-v,e = map(int,input().split())
-for i in range(e):
-    #TYPE UR CODE HERE
-    u,v=input().split()
-    graph[u].append(v)
-    graph[v].append(u)
-start = '0'
-path = []
-visited = defaultdict(bool)
-traversedpath = bfs(graph,start,visited,path)
-print(traversedpath)
-```
-<h3>Sample Input:</h3>
+<hr>
+<h3>Sample Input</h3>
 <hr>
 7 9 <BR>
 A B <BR>
@@ -118,14 +129,14 @@ D E <BR>
 D G <BR>
 G F <BR>
 <hr>
-<h3>Sample Output:</h3>
+<h3>Sample Output</h3>
 <hr>
 ['A', 'B', 'C', 'F', 'E', 'D', 'G']
 
 <hr>
 
 <hr>
-<h3>Sample Input:</h3>
+<h3>Sample Input</h3>
 <hr>
 5 6 <BR>
 0 1 <BR>
@@ -135,12 +146,14 @@ G F <BR>
 2 4 <BR>
 3 4 <BR>
 <hr>
-<h3>Sample Output:</h3>
+<h3>Sample Output</h3>
 <hr>
 ['0', '1', '2', '3', '4']
-<hr>
 
-<hr>
+## Output
+<img width="1680" height="1050" alt="exp_4(1)" src="https://github.com/user-attachments/assets/8dcaa998-069a-4049-80f6-b409c473407f" />
+<img width="1680" height="1050" alt="exp_4(2)" src="https://github.com/user-attachments/assets/561ebd15-6171-4105-af62-f06a52b8a3da" />
+
 <h3>Result:</h3>
 <hr>
 <p>Thus,a Graph was constructed and implementation of Breadth First Search for the same graph was done successfully.</p>
